@@ -1,0 +1,482 @@
+{
+  "title": "Adding fractions with different denominators",
+  "tutor": { "name": "Pip" },
+
+  "ui": {
+    "continue": "Continue",
+    "check": "Check",
+    "back": "Back",
+    "nextLine": "Next line",
+    "hint": "Hint",
+    "showMe": "Show me",
+    "tryAgain": "Try again",
+    "why": "Why does this work?",
+    "correctTitles": ["Yes, that's right.", "Exactly.", "Nice — correct.", "Spot on."],
+    "closeTitle": "Right idea",
+    "wrongTitle": "Not quite",
+    "infoTitle": "Good to have a go",
+    "shownTitle": "Here's that line",
+    "shownMessage": "Have a look at how it was done, then carry on. You'll get another go in the next part.",
+    "stuckNudge": "Stuck? Tap **Hint** — I'll give you a nudge, not the answer.",
+    "zeroDenominator": "A denominator can't be 0 — you can't cut something into zero pieces.",
+    "fillIn": "Fill in every box, then tap Check.",
+    "partOf": "Part {n} of {total}",
+    "menuTitle": "Lesson menu",
+    "menuJump": "Jump to a part you've already reached:",
+    "restart": "Restart lesson",
+    "closeMenu": "Keep going",
+    "voiceOn": "Read aloud: on",
+    "voiceOff": "Read aloud: off",
+    "keyTop": "Top",
+    "keyBottom": "Bottom",
+    "keyNext": "Next box",
+    "keyDelete": "Delete",
+    "slotTop": "numerator",
+    "slotBottom": "denominator",
+    "slotNumber": "number",
+    "empty": "empty",
+    "doneLabel": "done",
+    "shownLabel": "shown",
+    "reminderTitle": "The method"
+  },
+
+  "method": {
+    "title": "Four steps",
+    "steps": [
+      { "head": "Common denominator", "text": "Find a number both bottoms divide into. The smallest one keeps the numbers small." },
+      { "head": "Convert", "text": "Rewrite each fraction with that bottom. Whatever you multiply the bottom by, multiply the top by too." },
+      { "head": "Add the tops", "text": "Add the numerators. The denominator stays the same." },
+      { "head": "Simplify", "text": "If the top and bottom share a factor, divide both by it." }
+    ]
+  },
+
+  "parts": [
+    {
+      "id": "explain",
+      "title": "Explain",
+      "blurb": "Why you can't just add the tops and bottoms — and what to do instead.",
+      "say": "Hey, I'm Pip. In about ten minutes you'll be able to add any two fractions, even when the bottoms don't match.",
+      "screens": [
+        {
+          "type": "practice",
+          "oneShot": true,
+          "steps": [
+            {
+              "say": "Before I explain anything — have a guess. Wrong guesses are useful, so don't overthink it.",
+              "problem": [{ "f": "1/2" }, "+", { "f": "1/3" }],
+              "layout": ["=", { "field": "g", "type": "fraction" }],
+              "rules": {
+                "g": [
+                  { "equivalent": "5/6", "status": "correct", "say": "Spot on. Now let's see *why* it's {5/6}, so you can do it every time." },
+                  { "exact": "2/5", "status": "info", "say": "That's the most common guess — you added the tops and added the bottoms. It feels right, but it isn't. Let's see why." },
+                  { "any": true, "status": "info", "say": "Not quite, but you've got something to compare against. Let's work out the real answer." }
+                ]
+              },
+              "skip": { "label": "Not sure", "say": "Fair enough. Let's work it out together." }
+            }
+          ]
+        },
+        {
+          "type": "talk",
+          "say": "Here are {1/2} and {1/3} as bars. The pieces are different sizes — halves are bigger than thirds — so you can't just count them up.",
+          "visual": {
+            "type": "bars",
+            "rows": [
+              { "split": 2, "filled": 1, "label": "1/2" },
+              { "split": 3, "filled": 1, "label": "1/3", "tone": 2 }
+            ]
+          }
+        },
+        {
+          "type": "talk",
+          "say": "And that popular guess, {2/5}? It's *smaller* than {1/2} on its own. Adding more to {1/2} can't make it shrink, so adding tops and bottoms never works.",
+          "visual": {
+            "type": "bars",
+            "rows": [
+              { "split": 2, "filled": 1, "label": "1/2" },
+              { "split": 5, "filled": 2, "label": "2/5", "tone": 3 }
+            ]
+          }
+        },
+        {
+          "type": "talk",
+          "say": "The fix: cut both into pieces of the **same size**. Sixths work for both. {1/2} is the same as {3/6}, and {1/3} is the same as {2/6}.",
+          "visual": {
+            "type": "bars",
+            "rows": [
+              { "split": 6, "filled": 3, "label": "3/6" },
+              { "split": 6, "filled": 2, "label": "2/6", "tone": 2 }
+            ]
+          }
+        },
+        {
+          "type": "talk",
+          "say": "Now the pieces match, so just count them: 3 sixths + 2 sixths = 5 sixths. So {1/2} + {1/3} = {5/6}.",
+          "visual": {
+            "type": "bars",
+            "rows": [
+              { "split": 6, "filled": 5, "label": "5/6", "tone": 4 }
+            ]
+          }
+        },
+        {
+          "type": "method",
+          "say": "That's the whole method. Four steps. The bottom number is the **denominator**, the top is the **numerator**."
+        }
+      ]
+    },
+
+    {
+      "id": "watch",
+      "title": "Watch",
+      "blurb": "A worked example, one line at a time.",
+      "say": "Watch me do one. Tap **Next line** when you're ready for the next bit — you can go back any time.",
+      "screens": [
+        {
+          "type": "worked",
+          "lines": [
+            {
+              "math": [{ "f": "3/10", "id": "p1" }, "+", { "f": "1/6", "id": "p2" }],
+              "say": "Here's {3/10} + {1/6}. The bottoms are 10 and 6 — different-sized pieces. So step 1: find a common denominator.",
+              "point": ["p1.d", "p2.d"],
+              "methodStep": 1
+            },
+            {
+              "aside": true,
+              "math": [{ "t": "Multiples of 10:" }, { "t": "10, 20," }, { "n": "30", "id": "m1" }],
+              "say": "List the multiples of each bottom until they share one. Multiples of 10: 10, 20, 30…",
+              "point": ["m1"],
+              "methodStep": 1
+            },
+            {
+              "aside": true,
+              "math": [{ "t": "Multiples of 6:" }, { "t": "6, 12, 18, 24," }, { "n": "30", "id": "m2" }],
+              "say": "…and of 6: 6, 12, 18, 24, 30. First match: **30**. (10 × 6 = 60 would work too — it just gives bigger numbers.)",
+              "point": ["m1", "m2"],
+              "methodStep": 1
+            },
+            {
+              "math": ["=", { "f": "9/30", "id": "c1" }, "+", { "f": "5/30", "id": "c2" }],
+              "say": "Convert. 10 × 3 = 30, so multiply the top by 3 too: {3/10} = {9/30}. And 6 × 5 = 30, so {1/6} = {5/30}.",
+              "point": ["c1", "c2"],
+              "methodStep": 2
+            },
+            {
+              "math": ["=", { "f": "14/30", "id": "s" }],
+              "say": "Same-size pieces now, so add the tops: 9 + 5 = 14. The bottom stays 30 — adding pieces doesn't change their size.",
+              "point": ["s.n"],
+              "methodStep": 3
+            },
+            {
+              "math": ["=", { "f": "7/15", "id": "r" }],
+              "say": "Simplify. 14 and 30 are both even, so divide both by 2: {7/15}. 7 and 15 share no other factor, so that's as simple as it gets.",
+              "point": ["r"],
+              "methodStep": 4
+            }
+          ],
+          "outro": "So {3/10} + {1/6} = {7/15}. Next, you do one — I'll be right here."
+        }
+      ]
+    },
+
+    {
+      "id": "together",
+      "title": "Try one together",
+      "blurb": "You type each line. I'll check it as you go.",
+      "say": "Your turn. You type each line, I'll check it. Use the keypad — tap a box to choose where your number goes.",
+      "screens": [
+        {
+          "type": "practice",
+          "problem": [{ "f": "1/4" }, "+", { "f": "5/12" }],
+          "outro": "{1/4} + {5/12} = {2/3}. That's the whole method, done by you.",
+          "steps": [
+            {
+              "methodStep": 1,
+              "lead": "Common denominator",
+              "say": "First: what's the smallest number that both 4 and 12 divide into?",
+              "layout": [{ "field": "n", "type": "number" }],
+              "answer": { "n": "12" },
+              "rules": {
+                "n": [
+                  { "exact": "12", "status": "correct" },
+                  { "exact": "16", "status": "wrong", "say": "Looks like you added 4 and 12. We need a number they both divide into exactly — and 12 doesn't go into 16." },
+                  { "exact": "4", "status": "wrong", "say": "4 goes into 4, but 12 doesn't. The number has to work for both bottoms." },
+                  { "multipleOf": 12, "status": "close", "useAnswer": true, "say": "That works — both divide into it. But 12 is smaller (4 already goes into 12), so we'll use 12 to keep the numbers small." },
+                  { "any": true, "status": "wrong", "say": "Check it: does 4 go into it exactly? Does 12? It needs both." }
+                ]
+              },
+              "correct": "Yes — 12. Since 4 goes into 12, the bigger denominator already does the job.",
+              "hints": [
+                "Count up in 4s: 4, 8, 12… Stop at the first one that 12 also divides into.",
+                "Does 12 divide into 12? Does 4?"
+              ],
+              "why": "A common denominator lets us cut both fractions into same-size pieces. Any common multiple works; the smallest keeps the numbers easy."
+            },
+            {
+              "methodStep": 2,
+              "lead": "Convert",
+              "say": "Now rewrite both fractions as twelfths. Whatever you multiply the bottom by, do the same to the top.",
+              "layout": ["=", { "field": "a", "type": "fraction" }, "+", { "field": "b", "type": "fraction" }],
+              "answer": { "a": "3/12", "b": "5/12" },
+              "rules": {
+                "a": [
+                  { "exact": "3/12", "status": "correct" },
+                  { "denominator": 12, "numerator": 1, "status": "wrong", "say": "You changed the bottom of {1/4} to 12 but left the top as 1. 4 × 3 = 12, so the top needs × 3 as well." },
+                  { "equivalent": "1/4", "status": "wrong", "say": "Your first fraction is equal to {1/4}, which is good — but it needs 12 on the bottom so the pieces match." },
+                  { "denominator": 12, "status": "wrong", "say": "First fraction: the bottom's right. 4 was multiplied by 3 to get 12, so multiply the top, 1, by 3." },
+                  { "any": true, "status": "wrong", "say": "{1/4} needs to become something over 12. What do you multiply 4 by to get 12?" }
+                ],
+                "b": [
+                  { "exact": "5/12", "status": "correct" },
+                  { "equivalent": "5/12", "status": "wrong", "say": "Your second fraction equals {5/12}, but keep it in twelfths so both fractions match." },
+                  { "any": true, "status": "wrong", "say": "{5/12} already has 12 on the bottom, so it doesn't need to change." }
+                ]
+              },
+              "correct": "Yes, that's right. {1/4} = {3/12}, and {5/12} was already in twelfths.",
+              "hints": [
+                "Start with {1/4}. What times 4 gives 12? Do the same to the top.",
+                "4 × 3 = 12, so 1 × 3 = 3. The second fraction already has 12 on the bottom."
+              ],
+              "why": "Multiplying the top and bottom by the same number is like multiplying by 1: the value stays the same, only the size of the pieces changes."
+            },
+            {
+              "methodStep": 3,
+              "lead": "Add",
+              "say": "The pieces match now. Add the tops. What happens to the bottom?",
+              "layout": ["=", { "field": "s", "type": "fraction" }],
+              "answer": { "s": "8/12" },
+              "rules": {
+                "s": [
+                  { "exact": "8/12", "status": "correct" },
+                  { "exact": "8/24", "status": "wrong", "say": "You added the bottoms too. The pieces are still twelfths — putting them together doesn't make them smaller. Keep 12." },
+                  { "equivalent": "8/12", "lowest": true, "status": "correct", "skip": 1, "say": "Yes — and you've simplified already. {8/12} = {2/3}, so that's the final answer." },
+                  { "equivalent": "8/12", "status": "close", "useAnswer": true, "say": "That's equal to {8/12} — you've started simplifying. Let's write {8/12} here and finish simplifying on the next line." },
+                  { "denominator": 12, "status": "wrong", "say": "The bottom's right. Now add the tops: 3 + 5." },
+                  { "any": true, "status": "wrong", "say": "Add just the tops, 3 + 5, and keep the bottom as 12." }
+                ]
+              },
+              "correct": "Yes — 3 + 5 = 8, and the bottom stays 12.",
+              "hints": [
+                "Only the tops get added. The bottom stays 12.",
+                "3 + 5 = ?"
+              ],
+              "why": "3 twelfths plus 5 twelfths is 8 twelfths — the same way 3 apples plus 5 apples is 8 apples. The 'twelfths' is the unit."
+            },
+            {
+              "methodStep": 4,
+              "lead": "Simplify",
+              "say": "Last step: can {8/12} be simplified? Look for a number that divides into both 8 and 12.",
+              "layout": ["=", { "field": "f", "type": "fraction" }],
+              "answer": { "f": "2/3" },
+              "rules": {
+                "f": [
+                  { "exact": "2/3", "status": "correct" },
+                  { "exact": "8/12", "status": "wrong", "say": "That's where we started. 8 and 12 are both in the 4 times table — divide both by 4." },
+                  { "equivalent": "2/3", "status": "wrong", "say": "Nearly — that's equal, but the top and bottom still share a factor. Divide again." },
+                  { "any": true, "status": "wrong", "say": "That isn't equal to {8/12}. Divide the top and the bottom by the *same* number." }
+                ]
+              },
+              "correct": "Yes, that's right. 8 and 12 both divide by 4, giving {2/3}.",
+              "hints": [
+                "Both 8 and 12 are in the 4 times table.",
+                "8 ÷ 4 = 2, and 12 ÷ 4 = 3."
+              ],
+              "why": "Dividing the top and bottom by the same number keeps the value the same. Use the biggest shared factor to get there in one go."
+            }
+          ]
+        }
+      ]
+    },
+
+    {
+      "id": "solo",
+      "title": "On your own",
+      "blurb": "A new one. Same steps, less chat from me.",
+      "say": "This one's yours. I'll stay quiet unless you ask for a hint.",
+      "screens": [
+        {
+          "type": "practice",
+          "solo": true,
+          "problem": [{ "f": "7/10" }, "+", { "f": "2/15" }],
+          "outro": "{7/10} + {2/15} = {5/6}. You did that on your own.",
+          "steps": [
+            {
+              "methodStep": 1,
+              "lead": "Common denominator",
+              "say": "Line 1: a common denominator.",
+              "layout": [{ "field": "n", "type": "number" }],
+              "answer": { "n": "30" },
+              "rules": {
+                "n": [
+                  { "exact": "30", "status": "correct" },
+                  { "exact": "25", "status": "wrong", "say": "That's 10 + 15. We need a number both 10 and 15 divide into exactly." },
+                  { "multipleOf": 30, "status": "close", "useAnswer": true, "say": "That works. 30 is the smallest one, though, so we'll use 30 to keep the numbers small." },
+                  { "any": true, "status": "wrong", "say": "Does 10 go into it exactly? Does 15? It needs both." }
+                ]
+              },
+              "correct": "Yes — 30.",
+              "hints": [
+                "Count up in 15s: 15, 30, 45… Which is the first one 10 also divides into?",
+                "Does 10 go into 30? Does 15?"
+              ],
+              "why": "30 is the smallest number in both the 10 and 15 times tables. 10 × 15 = 150 also works, but the numbers get big."
+            },
+            {
+              "methodStep": 2,
+              "lead": "Convert",
+              "say": "Line 2: convert both fractions.",
+              "layout": ["=", { "field": "a", "type": "fraction" }, "+", { "field": "b", "type": "fraction" }],
+              "answer": { "a": "21/30", "b": "4/30" },
+              "rules": {
+                "a": [
+                  { "exact": "21/30", "status": "correct" },
+                  { "denominator": 30, "numerator": 7, "status": "wrong", "say": "First fraction: the bottom's right, but the top needs the same × 3." },
+                  { "equivalent": "7/10", "status": "wrong", "say": "First fraction: equal to {7/10}, but it needs 30 on the bottom." },
+                  { "denominator": 30, "status": "wrong", "say": "First fraction: 10 × 3 = 30, so the top is 7 × 3." },
+                  { "any": true, "status": "wrong", "say": "First fraction: what do you multiply 10 by to get 30? Do that to the top too." }
+                ],
+                "b": [
+                  { "exact": "4/30", "status": "correct" },
+                  { "denominator": 30, "numerator": 2, "status": "wrong", "say": "Second fraction: 15 × 2 = 30, so double the top as well." },
+                  { "equivalent": "2/15", "status": "wrong", "say": "Second fraction: equal to {2/15}, but it needs 30 on the bottom." },
+                  { "denominator": 30, "status": "wrong", "say": "Second fraction: 15 × 2 = 30, so the top is 2 × 2." },
+                  { "any": true, "status": "wrong", "say": "Second fraction: what do you multiply 15 by to get 30? Do that to the top too." }
+                ]
+              },
+              "correct": "Yes, that's right. {7/10} = {21/30} and {2/15} = {4/30}.",
+              "hints": [
+                "10 × 3 = 30 and 15 × 2 = 30. Do the same to each top.",
+                "7 × 3 = 21, and 2 × 2 = 4."
+              ],
+              "why": "Multiplying the top and bottom by the same number doesn't change the value — it just cuts the pieces smaller."
+            },
+            {
+              "methodStep": 3,
+              "lead": "Add",
+              "say": "Line 3: add.",
+              "layout": ["=", { "field": "s", "type": "fraction" }],
+              "answer": { "s": "25/30" },
+              "rules": {
+                "s": [
+                  { "exact": "25/30", "status": "correct" },
+                  { "exact": "25/60", "status": "wrong", "say": "Careful — only the tops get added. The bottom stays 30." },
+                  { "equivalent": "25/30", "lowest": true, "status": "correct", "skip": 1, "say": "Yes — and you've simplified already: {25/30} = {5/6}. That's the final answer." },
+                  { "equivalent": "25/30", "status": "close", "useAnswer": true, "say": "That's equal to {25/30} — you've started simplifying. Let's write {25/30} here and finish on the next line." },
+                  { "denominator": 30, "status": "wrong", "say": "Bottom's right. Check the top: 21 + 4." },
+                  { "any": true, "status": "wrong", "say": "Add the tops, 21 + 4, and keep the bottom as 30." }
+                ]
+              },
+              "correct": "Yes — {25/30}.",
+              "hints": [
+                "Add the tops. The bottom stays 30.",
+                "21 + 4 = ?"
+              ],
+              "why": "21 thirtieths plus 4 thirtieths is 25 thirtieths."
+            },
+            {
+              "methodStep": 4,
+              "lead": "Simplify",
+              "say": "Line 4: simplify.",
+              "layout": ["=", { "field": "f", "type": "fraction" }],
+              "answer": { "f": "5/6" },
+              "rules": {
+                "f": [
+                  { "exact": "5/6", "status": "correct" },
+                  { "exact": "25/30", "status": "wrong", "say": "Can it go further? 25 and 30 are both in the 5 times table." },
+                  { "equivalent": "5/6", "status": "wrong", "say": "Equal, but not fully simplified yet — the top and bottom still share a factor." },
+                  { "any": true, "status": "wrong", "say": "That isn't equal to {25/30}. Divide the top and bottom by the same number." }
+                ]
+              },
+              "correct": "Yes, that's right. 25 and 30 both divide by 5, giving {5/6}.",
+              "hints": [
+                "25 and 30 are both in the 5 times table.",
+                "25 ÷ 5 = 5, and 30 ÷ 5 = 6."
+              ],
+              "why": "5 and 6 share no factor except 1, so {5/6} is in its simplest form."
+            }
+          ]
+        }
+      ]
+    }
+  ],
+
+  "end": {
+    "title": "You can add fractions now.",
+    "say": "That's it. Any two fractions, same four steps. Nice work.",
+    "restart": "Start again",
+    "review": "Rewatch the worked example"
+  },
+
+  "extra": {
+    "button": "Practice questions",
+    "title": "Practice questions",
+    "pickerTitle": "Pick a level",
+    "pickerSay": "Pick a level and I'll make up questions for you. Every one is new, and the hints work just like before.",
+    "kicker": "{name} · question {n}",
+    "another": "Another one",
+    "changeLevel": "Levels",
+    "backToLesson": "Back to lesson",
+    "doneSay": "Want another? Tap **Another one**.",
+    "shownMessage": "Have a look at how it was done. Then try **Another one** — it'll be a fresh question.",
+    "options": [
+      { "group": "Division with remainders", "topic": "division", "level": "easy", "title": "Division · Easy", "quizSeconds": 180, "blurb": "Dividing by 2 to 5, answers up to 10.", "example": "e.g. 23 ÷ 4" },
+      { "group": "Division with remainders", "topic": "division", "level": "medium", "title": "Division · Medium", "quizSeconds": 240, "blurb": "Two-digit numbers divided by 3 to 9.", "example": "e.g. 74 ÷ 6" },
+      { "group": "Division with remainders", "topic": "division", "level": "hard", "title": "Division · Hard", "quizSeconds": 360, "blurb": "Three-digit numbers divided by 6 to 15.", "example": "e.g. 538 ÷ 12" },
+      { "group": "This lesson", "topic": "fractions", "title": "Adding fractions", "quizSeconds": 360, "blurb": "Two fractions with different denominators, step by step.", "example": "e.g. 3/4 + 1/6" }
+    ]
+  },
+
+  "quiz": {
+    "menuItem": "Timed quiz",
+    "modeLabel": "Choose practice or quiz",
+    "modePractice": "Practice",
+    "modeQuiz": "Timed quiz",
+    "pickerSay": "Ten questions against the clock. One go at each, no hints, and you'll see the answer straight away.",
+    "quizCard": "10 questions · {time}",
+    "kicker": "Quiz · {name}",
+    "questionOf": "Question {n} of {total}",
+    "scoreLabel": "Score {score}",
+    "timeLeft": "Time left",
+    "startSay": "Ten questions, {time} on the clock. It stops while you read feedback. {tip}",
+    "lowTime": "30 seconds left!",
+    "submit": "Submit",
+    "skip": "Skip",
+    "next": "Next question",
+    "seeResults": "See results",
+    "answerIs": "The answer is {answer}.",
+    "skippedTitle": "Skipped",
+    "resultsTitle": "Quiz results",
+    "scoreAria": "Score: {score} out of {total}",
+    "timeUsed": "Time {used} of {total}",
+    "best": "Best {best}/{total}",
+    "newBest": "New best!",
+    "timedOut": "Time ran out. {n} not answered.",
+    "reviewTitle": "Your answers",
+    "you": "You",
+    "answer": "Answer",
+    "stateCorrect": "correct",
+    "stateWrong": "wrong",
+    "skipped": "skipped",
+    "notAnswered": "not answered",
+    "levels": "Levels",
+    "again": "New quiz",
+    "verdicts": [
+      {
+        "min": 10,
+        "say": "10 out of 10. Flawless."
+      },
+      {
+        "min": 8,
+        "say": "{score} out of 10. Strong. Check the ones you missed below."
+      },
+      {
+        "min": 5,
+        "say": "{score} out of 10. Look at the mistakes below, then have another go."
+      },
+      {
+        "min": 0,
+        "say": "{score} out of 10. Try a few in Practice first, where the hints help, then come back."
+      }
+    ]
+  }
+}
