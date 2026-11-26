@@ -72,23 +72,28 @@ Switching to one-step equations means rewriting only `lesson.json`. The engine j
 
 ## Practice questions (generator)
 
-`generator.js` makes new questions in the same format as the hand-written practice screens, so the engine checks them with the same rules, hint ladder and feedback sheet. Open it from **Practice questions** in the ✕ menu, from the end screen, or go straight there with `index.html#practice`.
+`generator.js` makes new fraction-addition questions in the same format as the hand-written "On your own" screen, so the engine checks them with the same rules, four-line method, hint ladder and feedback sheet. Open it from **Practice questions** in the ✕ menu, from the end screen, or go straight there with `index.html#practice`.
 
-- **Division with remainders:** one line, `N ÷ d = [answer] r [remainder]`, with a separate remainder box (enter 0 if nothing is left over).
-  - *Easy*: dividing by 2 to 5, answers up to 10, about half have a remainder.
-  - *Medium*: two-digit numbers divided by 3 to 9.
-  - *Hard*: three-digit numbers divided by 6 to 15, with hints that split the number into chunks.
-  - Feedback on each box: answer too big, one too small (the remainder would be too big), remainder of the divisor or more, remainder missing, 0 needed when it divides exactly. Hints: times-table nudge → the nearest multiple → Show me (with a check back: d × q + r = N).
-- **Adding fractions:** random pairs from this lesson (sum below 1, smallest common denominator 60 or less). The simplify step is only included when the answer needs it, about 60% of the time.
+Every question adds two proper, simplified fractions with different denominators, and the sum is below 1. The three levels differ in how hard the common denominator is to find, which is the core skill the lesson teaches:
+
+| Level | Denominators | Example | Common denominator |
+|---|---|---|---|
+| **Easy** | One is a multiple of the other | 1/4 + 3/8 | The bigger one (8). That fraction stays as it is. |
+| **Medium** | They share no factor | 2/3 + 1/5 | Their product (15). The answer never needs simplifying, because with coprime denominators it can't. |
+| **Hard** | They share a factor, and neither divides the other | 7/10 + 2/15 | Smaller than the product (30, not 150). About 70% need simplifying. |
+
+- The simplify line appears only when the answer actually simplifies.
+- The smallest common denominator is at most 60, so every number fits the 3-digit keypad boxes.
 - You never get the same question twice in a row. Labels and Pip's lines are in the `extra` section of `lesson.json`, and the wording of each question's feedback is in `generator.js`.
-- Tested in Node: 30,000 division and 20,000 fraction questions. Each answer is accepted, and the known mistakes are rejected.
+- Tested in Node: 10,000 questions per level, each checked to match its level. Every line's answer is accepted, and the known mistakes are rejected.
 
 ## Timed quiz
 
-Open it from **Timed quiz** in the ✕ menu, from the *Timed quiz* switch on the practice picker, or with `index.html#quiz`. Each quiz is 10 different questions from one of the four options.
+Open it from **Timed quiz** in the ✕ menu, from the *Timed quiz* switch on the practice picker, or with `index.html#quiz`. Each quiz is 10 different questions at one level (Easy, Medium or Hard).
 
-- **One clock for the whole quiz:** 3:00 (Easy), 4:00 (Medium), 6:00 (Hard or fractions). It stops while feedback or the menu is on screen, so reading costs no time. At 30 seconds the timer turns red and Pip warns you. When it hits 0, any questions left are marked *not answered* and the results page opens.
-- **One try, no hints:** after each answer the feedback sheet names the mistake (the same messages as practice, worded as statements, not prompts), gives the right answer, and has the usual *Why does this work?* fold. Skip is allowed.
+- **One clock for the whole quiz:** 4:00 (Easy), 5:00 (Medium), 6:00 (Hard). It stops while feedback or the menu is on screen, so reading costs no time. At 30 seconds the timer turns red and Pip warns you. When it hits 0, any questions left are marked *not answered* and the results page opens.
+- **One try, no hints:** you type only the final answer, in its simplest form. After each answer the feedback sheet names the mistake (the same messages as practice, worded as statements, not prompts), gives the right answer, and has the usual *Why does this work?* fold. Skip is allowed.
+- Feedback names the mistake: tops and bottoms added, right value but not simplified, or right common denominator but wrong tops.
 - **Results page:** score out of 10, time used, best score for that level (or *New best!*), a verdict from Pip, and every question with your answer, the correct answer and what went wrong. *New quiz* repeats the level with fresh questions.
 - Best scores are kept in `localStorage` on this device only. If storage is blocked, the quiz still works without them. Following the brief, there are no streaks or XP.
 - The text is in the `quiz` section of `lesson.json`, and the time limits are `quizSeconds` on each practice option.

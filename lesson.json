@@ -412,17 +412,16 @@
     "title": "Practice questions",
     "pickerTitle": "Pick a level",
     "pickerSay": "Pick a level and I'll make up questions for you. Every one is new, and the hints work just like before.",
-    "kicker": "{name} · question {n}",
+    "kicker": "Adding fractions · {name} · question {n}",
     "another": "Another one",
     "changeLevel": "Levels",
     "backToLesson": "Back to lesson",
     "doneSay": "Want another? Tap **Another one**.",
     "shownMessage": "Have a look at how it was done. Then try **Another one** — it'll be a fresh question.",
     "options": [
-      { "group": "Division with remainders", "topic": "division", "level": "easy", "title": "Division · Easy", "quizSeconds": 180, "blurb": "Dividing by 2 to 5, answers up to 10.", "example": "e.g. 23 ÷ 4" },
-      { "group": "Division with remainders", "topic": "division", "level": "medium", "title": "Division · Medium", "quizSeconds": 240, "blurb": "Two-digit numbers divided by 3 to 9.", "example": "e.g. 74 ÷ 6" },
-      { "group": "Division with remainders", "topic": "division", "level": "hard", "title": "Division · Hard", "quizSeconds": 360, "blurb": "Three-digit numbers divided by 6 to 15.", "example": "e.g. 538 ÷ 12" },
-      { "group": "This lesson", "topic": "fractions", "title": "Adding fractions", "quizSeconds": 360, "blurb": "Two fractions with different denominators, step by step.", "example": "e.g. 3/4 + 1/6" }
+      { "group": "Adding fractions", "topic": "fractions", "level": "easy", "title": "Easy", "quizSeconds": 240, "blurb": "One bottom is already a multiple of the other, so it's your common denominator.", "example": "e.g. {1/4} + {3/8}" },
+      { "group": "Adding fractions", "topic": "fractions", "level": "medium", "title": "Medium", "quizSeconds": 300, "blurb": "The bottoms share no factor, so multiply them to get the common denominator.", "example": "e.g. {2/3} + {1/5}" },
+      { "group": "Adding fractions", "topic": "fractions", "level": "hard", "title": "Hard", "quizSeconds": 360, "blurb": "The bottoms share a factor. Find the smallest common denominator, not just the product.", "example": "e.g. {7/10} + {2/15}" }
     ]
   },
 
@@ -433,7 +432,7 @@
     "modeQuiz": "Timed quiz",
     "pickerSay": "Ten questions against the clock. One go at each, no hints, and you'll see the answer straight away.",
     "quizCard": "10 questions · {time}",
-    "kicker": "Quiz · {name}",
+    "kicker": "Quiz · Adding fractions · {name}",
     "questionOf": "Question {n} of {total}",
     "scoreLabel": "Score {score}",
     "timeLeft": "Time left",
