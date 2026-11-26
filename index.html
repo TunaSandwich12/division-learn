@@ -330,7 +330,7 @@ const S = {                 // state
   vals: {}, focus: null, tries: 0, hint: 0,
   done: [], finished: false, sheetOpen: false, sheetPrimary: null,
   extraItem: null, extraCount: 0,  // generated practice question (or the level picker), shown on top of the lesson
-  practice: { topic: "division", level: "easy" }
+  practice: { topic: "fractions", level: "easy" }
 };
 const cur = () => S.extraItem || S.seq[S.i];
 const $ = s => document.querySelector(s);
@@ -572,7 +572,7 @@ function startExtra(choice) {
   const prevKey = S.extraItem && S.extraItem.s && S.extraItem.s.key;
   resetScreen(0); S.extraCount++;
   const { topic, level } = S.practice;
-  const q = topic === "fractions" ? generateQuestion({ avoid: prevKey }) : generateDivision({ level, avoid: prevKey });
+  const q = generateQuestion({ avoid: prevKey, level });
   const opt = L.extra.options.find(o => o.topic === topic && (o.level || "") === (level || "")) || L.extra.options[0];
   S.extraItem = { kind: "practice", s: q, p: { title: tpl(L.extra.kicker, { name: opt.title, n: S.extraCount }) }, pi: S.seq[S.i].pi, extra: true };
   render(); $("#board").scrollTop = 0;
@@ -591,7 +591,7 @@ function renderPicker(it, b) {
   let group = null;
   x.options.forEach(o => {
     if (o.group !== group) { group = o.group; b.appendChild(el("div", "kicker", esc(group))); }
-    const extra = quiz ? esc(tpl(u.quizCard, { time: mmss(o.quizSeconds) })) : esc(o.example);
+    const extra = quiz ? esc(tpl(u.quizCard, { time: mmss(o.quizSeconds) })) : fmt(o.example);
     const c = el("button", "pick " + (o.level || ""), `<span class="pt">${esc(o.title)}</span><span class="pd">${esc(o.blurb)}</span><span class="pe">${extra}</span>`);
     c.onclick = () => quiz ? startQuiz({ topic: o.topic, level: o.level }) : startExtra({ topic: o.topic, level: o.level });
     b.appendChild(c);
